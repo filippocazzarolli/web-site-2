@@ -1,16 +1,54 @@
-# React + Vite
+# Filippo Cazzarolli — Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A single-page personal portfolio website built with React 19 and Vite 7. Dark terminal/retro aesthetic with neon green accents, scroll-based animations, and a custom animated cursor.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** — functional components, hooks
+- **Vite 7** — dev server with HMR, production builds
+- **Tailwind CSS v4** — utility-first styling via `@tailwindcss/vite` plugin
+- **ESLint 9** — flat config with react-hooks and react-refresh plugins
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev       # Start dev server (localhost:5173)
+npm run build     # Production build → dist/
+npm run preview   # Preview production build locally
+npm run lint      # Run ESLint
+```
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── main.jsx              # App entry point
+├── App.jsx               # Root component
+├── index.css             # Global styles, CSS variables, keyframes
+├── components/
+│   ├── Nav.jsx           # Fixed header with anchor links
+│   ├── Hero.jsx          # Landing section with typing animation
+│   ├── Stats.jsx         # Animated counters (scroll-triggered)
+│   ├── About.jsx         # Bio + terminal JSON profile panel
+│   ├── Skills.jsx        # Backend/Frontend skill bars (scroll-triggered)
+│   ├── Cta.jsx           # Contact call-to-action
+│   └── Cursor.jsx        # Custom animated cursor (desktop only)
+└── hooks/
+    └── useFadeUp.js      # IntersectionObserver hook for fade-up animations
+```
+
+## Design System
+
+| Token | Value |
+|-------|-------|
+| Background | `#080808` |
+| Accent (green) | `#00ff88` |
+| Text (chalk) | `#e8e8e8` |
+| Primary font | JetBrains Mono |
+| Secondary font | Space Mono |
+
+- Fluid typography with `clamp()` for responsive headings
+- Scroll-based animations via `useFadeUp` (IntersectionObserver, threshold 0.2, fires once)
+- Scanlines overlay via `body::after` pseudo-element
+- Mobile-first responsive layout; custom cursor hidden on touch devices

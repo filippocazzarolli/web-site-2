@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Space+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #080808;
+  --color-green: #00ff88;
+  --color-green-dim: #00cc6a;
+  --color-chalk: #e8e8e8;
+  --color-gray: #444;
+  --color-muted: #888;
+  --color-line: #1a1a1a;
+  --color-blue: #5588ff;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-space: 'Space Mono', monospace;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes scrollLine {
+  0%, 100% { width: 40px; opacity: 1; }
+  50% { width: 20px; opacity: 0.3; }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  cursor: none;
+  overflow-x: hidden;
+  background-color: #080808;
+  color: #e8e8e8;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Scanlines overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 9000;
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.animate-blink-fast {
+  animation: blink 0.8s step-end infinite;
+}
+
+/* Scroll hint animated line */
+.scroll-hint::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #888;
+  animation: scrollLine 2s ease infinite;
+}
+
+/* Stat block top bar */
+.stat-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #00ff88;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1s ease;
+}
+
+.stat-bar.visible::before {
+  transform: scaleX(1);
+}
+
+/* Fade up animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stats responsive grid */
+.stats-grid {
+  grid-template-columns: 1fr;
+}
+
+.stats-cell {
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.stats-cell:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 640px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats-cell {
+    border-right: 1px solid var(--color-gray);
+    border-bottom: 1px solid var(--color-gray);
+  }
+
+  .stats-cell:nth-child(2n) {
+    border-right: none;
+  }
+
+  .stats-cell:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .stats-cell {
+    border-right: 1px solid var(--color-gray);
+    border-bottom: none;
+  }
+
+  .stats-cell:nth-child(2n) {
+    border-right: 1px solid var(--color-gray);
+  }
+
+  .stats-cell:last-child {
+    border-right: none;
+  }
+}
+
+/* Restore cursor on touch devices */
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+}
