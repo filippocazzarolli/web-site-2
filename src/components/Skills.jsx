@@ -40,7 +40,13 @@ function SkillItem({ name, pct, index }) {
         <span className="text-[10px] text-green opacity-30 tabular-nums w-5 shrink-0">
           {String(index + 1).padStart(2, '0')}
         </span>
-        <span className="text-chalk text-xs">{name}</span>
+        <span className="text-chalk text-xs flex-1">{name}</span>
+        <span
+          className="text-[10px] tabular-nums transition-all duration-700"
+          style={{ color: width > 0 ? '#00ff88' : 'transparent', opacity: width > 0 ? 0.7 : 0 }}
+        >
+          {pct}%
+        </span>
       </div>
       <div className="h-[2px] bg-[#1f1f1f] relative overflow-hidden ml-8">
         <div

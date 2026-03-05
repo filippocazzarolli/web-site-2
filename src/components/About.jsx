@@ -22,11 +22,11 @@ export default function About() {
         </div>
       </div>
 
-      {/* Center: terminal window (più stretto) */}
+      {/* Center: terminal window */}
       <div
         ref={rightRef}
-        className={'fade-up' + (rightVisible ? ' visible' : '')}
-        style={{ transitionDelay: '0.2s', width: '280px', flexShrink: 0 }}
+        className={'fade-up w-full lg:w-[340px] lg:flex-shrink-0' + (rightVisible ? ' visible' : '')}
+        style={{ transitionDelay: '0.2s' }}
       >
         <div className="border border-gray bg-[#0d0d0d]">
           <div className="px-4 py-2.5 bg-[#161616] border-b border-gray flex items-center gap-2">
