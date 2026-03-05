@@ -61,7 +61,7 @@ export default function Cta() {
         <span className="text-[10px] text-muted tracking-[2px]">FIND ME ON</span>
         <div className="h-px w-6 bg-gray" />
         <a
-          href="https://github.com/filippo-cazzarolli"
+          href="https://github.com/filippocazzarolli"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-muted text-[11px] tracking-[1px] no-underline transition-colors duration-200 hover:text-green group"
@@ -72,7 +72,7 @@ export default function Cta() {
           GitHub
         </a>
         <a
-          href="https://linkedin.com/in/filippo-cazzarolli"
+          href="https://www.linkedin.com/in/filippo-cazzarolli-2a8298110/"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-muted text-[11px] tracking-[1px] no-underline transition-colors duration-200 hover:text-green group"
